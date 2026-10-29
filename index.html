@@ -844,17 +844,33 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    }
-    function handleForm(e) {
-      e.preventDefault();
-      const name = document.getElementById('formName').value;
-      const email = document.getElementById('formEmail').value;
-      const msg = document.getElementById('formMsg').value;
-      const subject = `Portfolio Inquiry from ${name}`;
-      const body = `Name: ${name}%0AEmail: ${email}%0AMessage: ${msg}`;
-      window.location.href = `mailto:Smartbabaali@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-      alert('✨ Message prepared! Your email client will open.');
-    }
+   
+function handleForm(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('formName').value.trim();
+  const email = document.getElementById('formEmail').value.trim();
+  const msg = document.getElementById('formMsg').value.trim();
+
+  if (!name || !email || !msg) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  const subject = `Portfolio Inquiry from ${name}`;
+  const body =
+    `Name: ${name}\n` +
+    `Email: ${email}\n\n` +
+    `Message:\n${msg}`;
+
+  const mailtoLink =
+    `mailto:Smartbabaali@gmail.com` +
+    `?subject=${encodeURIComponent(subject)}` +
+    `&body=${encodeURIComponent(body)}`;
+
+  window.location.href = mailtoLink;
+}
+
     // Smooth nav links + 3D micro interactions
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', (e) => {
