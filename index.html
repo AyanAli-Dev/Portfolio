@@ -2,23 +2,20 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/png" href="favicon.png">
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-<title>Ayan Ali | Web Developer Portfolio</title>
+  <meta name="description" content="Ayan Ali's web developer portfolio featuring modern websites, projects and skills in HTML, CSS, JavaScript, PHP and MySQL.">
 
- 
-<meta name="description" content="Explore Ayan Ali's web developer portfolio featuring modern, responsive websites, web development projects, and skills in HTML, CSS, JavaScript, PHP, and MySQL.">
-
- 
-<meta property="og:title" content="Ayan Ali | Web Developer Portfolio">
-<meta property="og:description" content="Discover Ayan Ali's web development portfolio, featuring modern websites, creative projects, and skills in HTML, CSS, JavaScript, PHP, and MySQL.">
-<meta property="og:type" content="website">
-
+  <meta property="og:title" content="Ayan Ali | Web Developer Portfolio">
+  <meta property="og:description" content="Explore Ayan Ali's web development projects and skills.">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="https://ayanali-dev.github.io/Portfolio/">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <title>Ayan Ali | Web Developer Portfolio</title>
 
   <style>
     * {
@@ -29,375 +26,551 @@
 
     :root {
       --bg-deep: #010205;
-      --card-glass: rgba(12, 18, 28, 0.65);
+      --card-glass: rgba(12,18,28,.72);
       --muted-light: #b2c9d6;
       --accent-cyan: #00f2ff;
       --accent-purple: #b77eff;
-      --glow-cyan: rgba(0, 242, 255, 0.25);
-      --glow-purple: rgba(183, 126, 255, 0.2);
-      --radius-xl: 28px;
-      --radius-md: 20px;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out: cubic-bezier(.16,1,.3,1);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       background: var(--bg-deep);
-      font-family: 'Inter', 'Space Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
       color: #edf4fa;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
 
-    /* 3D background canvas (webgl style but lightweight) */
+    a {
+      color: var(--accent-cyan);
+    }
+
     #webgl-canvas {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: .55;
     }
 
     .wrapper {
       position: relative;
       z-index: 10;
       max-width: 1400px;
-      margin: 0 auto;
-      padding: 1.8rem 2rem 4rem;
+      margin: auto;
+      padding: 1.5rem 2rem 4rem;
     }
 
-    /* Glassmorphic sticky header with 3D border */
+    /* HEADER */
+
     .glass-header {
       position: sticky;
-      top: 1.2rem;
-      backdrop-filter: blur(12px);
-      background: rgba(5, 10, 18, 0.55);
-      border-radius: 80px;
-      padding: 0.8rem 2rem;
+      top: 12px;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border: 1px solid rgba(0, 242, 255, 0.2);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 242, 255, 0.1) inset;
-      z-index: 100;
-      margin-bottom: 2rem;
-      transition: all 0.3s;
+      gap: 20px;
+      padding: 14px 25px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(0,242,255,.2);
+      border-radius: 80px;
+      background: rgba(5,10,18,.85);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.4);
     }
 
     .brand-3d {
       display: flex;
       align-items: center;
       gap: 12px;
+      flex-shrink: 0;
     }
 
     .logo-3d {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(145deg, #00f2ff, #7c3aed);
-      border-radius: 18px;
+      width: 46px;
+      height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 15px;
+      background: linear-gradient(145deg,#00f2ff,#7c3aed);
+      color: #010205;
+      font-size: 1.5rem;
       font-weight: 800;
-      font-size: 1.6rem;
-      color: #010101;
-      box-shadow: 0 12px 20px -8px rgba(0, 242, 255, 0.4);
-      transform: rotate(2deg) scale(1);
-      transition: transform 0.25s var(--ease-out);
-    }
-
-    .logo-3d:hover {
-      transform: rotate(0deg) scale(1.05);
     }
 
     .brand-text h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      background: linear-gradient(120deg, #fff, #00e0ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .brand-text p {
+      color: var(--accent-cyan);
+      font-size: 11px;
+      margin-top: 3px;
     }
 
     .nav-links {
       display: flex;
-      gap: 1.2rem;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .nav-links a {
-      text-decoration: none;
-      font-weight: 600;
       color: var(--muted-light);
-      transition: 0.2s;
-      padding: 0.4rem 0.8rem;
-      border-radius: 40px;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+      padding: 9px 12px;
+      border-radius: 30px;
+      transition: .3s;
     }
 
     .nav-links a:hover {
       color: var(--accent-cyan);
-      text-shadow: 0 0 6px rgba(0, 242, 255, 0.5);
-      background: rgba(0, 242, 255, 0.05);
+      background: rgba(0,242,255,.08);
     }
 
-    /* hero 3d tilt card */
+    /* HERO */
+
     .hero-3d {
       display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 2.5rem;
-      background: radial-gradient(ellipse at 30% 20%, rgba(0, 242, 255, 0.08), transparent 65%);
-      border-radius: var(--radius-xl);
-      padding: 2.5rem;
-      margin-bottom: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(2px);
+      grid-template-columns: 1fr 340px;
+      align-items: center;
+      gap: 45px;
+      padding: 45px;
+      margin-bottom: 35px;
+      border-radius: 30px;
+      background: radial-gradient(ellipse at 25% 20%,rgba(0,242,255,.09),transparent 65%);
+      border: 1px solid rgba(255,255,255,.06);
     }
 
-    @media (max-width: 900px) {
-      .hero-3d {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
+    .availability {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 30px;
+      background: rgba(0,242,255,.12);
+      color: var(--accent-cyan);
+      font-size: 12px;
+      font-weight: 700;
     }
 
     .glow-text {
-      font-size: 3.2rem;
+      font-size: clamp(2.3rem,5vw,3.5rem);
       font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #fff, var(--accent-cyan), var(--accent-purple));
+      line-height: 1.12;
+      letter-spacing: -1.5px;
+      margin: 18px 0;
+      background: linear-gradient(135deg,#fff,var(--accent-cyan),var(--accent-purple));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin: 0.75rem 0 0.5rem;
+    }
+
+    .hero-description {
+      color: var(--muted-light);
+      max-width: 600px;
+      line-height: 1.8;
     }
 
     .cta-group {
       display: flex;
-      gap: 1rem;
-      margin-top: 1.8rem;
       flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 25px;
     }
 
     .btn-3d {
-      padding: 0.8rem 1.8rem;
-      border-radius: 60px;
-      font-weight: 700;
+      display: inline-block;
+      padding: 12px 22px;
       border: none;
-      cursor: pointer;
-      transition: all 0.25s var(--ease-out);
-      background: linear-gradient(95deg, var(--accent-cyan), #7c3aed);
+      border-radius: 50px;
+      background: linear-gradient(95deg,var(--accent-cyan),#7c3aed);
       color: #021018;
-      box-shadow: 0 10px 18px -6px rgba(0, 242, 255, 0.3);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: .3s;
+    }
+
+    .btn-3d:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0,242,255,.25);
     }
 
     .btn-3d-outline {
       background: transparent;
-      border: 1px solid rgba(0, 242, 255, 0.6);
       color: var(--accent-cyan);
-      backdrop-filter: blur(4px);
+      border: 1px solid var(--accent-cyan);
     }
 
-    .btn-3d:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 20px 28px -12px rgba(0, 242, 255, 0.5);
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 25px;
     }
 
-    /* 3D profile card with tilt */
+    .hero-contact a {
+      color: var(--accent-cyan);
+      font-size: .9rem;
+    }
+
     .tilt-card {
-      background: rgba(12, 18, 28, 0.6);
-      backdrop-filter: blur(12px);
-      border-radius: 36px;
-      padding: 1.5rem;
-      border: 1px solid rgba(0, 242, 255, 0.25);
-      transition: transform 0.3s ease, box-shadow 0.4s;
-      transform-style: preserve-3d;
-      box-shadow: 0 30px 40px -20px black;
+      padding: 25px;
+      border-radius: 30px;
+      text-align: center;
+      background: var(--card-glass);
+      border: 1px solid rgba(0,242,255,.3);
+      box-shadow: 0 25px 45px rgba(0,0,0,.4);
+      transition: .3s;
     }
 
     .tilt-card:hover {
-      transform: rotateX(2deg) rotateY(2deg) translateY(-6px);
-      box-shadow: 0 35px 50px -20px rgba(0, 242, 255, 0.3);
-      border-color: rgba(0, 242, 255, 0.5);
+      transform: translateY(-6px);
+      border-color: var(--accent-cyan);
     }
 
     .avatar-3d {
       width: 130px;
       height: 130px;
-      border-radius: 30px;
-      margin: 0 auto;
+      margin: auto;
       overflow: hidden;
+      border-radius: 28px;
       border: 2px solid var(--accent-cyan);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
-      transition: 0.3s;
     }
 
-    /* modern block style */
+    .avatar-3d img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 15px 0;
+    }
+
+    .profile-tags span {
+      padding: 6px 12px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.07);
+      font-size: 12px;
+    }
+
+    /* GENERAL SECTIONS */
+
     .section-block {
-      margin-bottom: 3rem;
-      background: rgba(5, 10, 20, 0.4);
-      backdrop-filter: blur(2px);
-      border-radius: 48px;
-      padding: 2rem 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      transition: all 0.4s;
+      margin-bottom: 35px;
+      padding: 35px;
+      border-radius: 30px;
+      background: rgba(5,10,20,.65);
+      border: 1px solid rgba(255,255,255,.06);
+      backdrop-filter: blur(8px);
     }
 
     .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
       display: inline-block;
-      background: linear-gradient(120deg, #f0f9ff, var(--accent-cyan));
+      margin-bottom: 25px;
+      padding-left: 15px;
+      border-left: 4px solid var(--accent-cyan);
+      font-size: clamp(1.5rem,3vw,2rem);
+      background: linear-gradient(120deg,#fff,var(--accent-cyan));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      letter-spacing: -0.3px;
-      border-left: 4px solid var(--accent-cyan);
-      padding-left: 1rem;
     }
 
-    /* Skills 3D pills */
+    /* ABOUT ME */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      color: var(--accent-cyan);
+      font-size: 1.35rem;
+      margin-bottom: 15px;
+    }
+
+    .about-text p {
+      color: #cbdbe6;
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .education-card {
+      margin-top: 25px;
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(0,242,255,.055);
+      border: 1px solid rgba(0,242,255,.25);
+    }
+
+    .education-card h3 {
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .education-card p {
+      color: var(--muted-light);
+      line-height: 1.8;
+      font-size: .93rem;
+    }
+
+    .about-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .about-images img {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(0,242,255,.25);
+      box-shadow: 0 15px 30px rgba(0,0,0,.3);
+      transition: .3s;
+    }
+
+    .about-images img:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent-cyan);
+    }
+
+    /* SKILLS */
+
     .skills-grid-3d {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin: 1.5rem 0;
+      margin-bottom: 28px;
     }
 
     .skill-pill-3d {
-      background: rgba(0, 242, 255, 0.08);
-      backdrop-filter: blur(4px);
-      padding: 0.6rem 1.2rem;
-      border-radius: 60px;
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 40px;
+      background: rgba(0,242,255,.08);
+      border: 1px solid rgba(0,242,255,.3);
+      font-size: .9rem;
       font-weight: 600;
-      border: 1px solid rgba(0, 242, 255, 0.3);
-      transition: all 0.2s;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: .25s;
     }
 
     .skill-pill-3d:hover {
       transform: translateY(-4px);
-      background: rgba(0, 242, 255, 0.2);
-      border-color: var(--accent-cyan);
-      box-shadow: 0 12px 20px -12px var(--glow-cyan);
+      background: rgba(0,242,255,.18);
     }
 
-    /* project cards 3D hover */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .progress-row {
+      margin-bottom: 18px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: .9rem;
+    }
+
+    .progress-bar-3d {
+      height: 9px;
+      background: rgba(255,255,255,.08);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg,var(--accent-cyan),var(--accent-purple));
+      border-radius: 20px;
+      transition: width 1.2s ease;
+    }
+
+    .skills-image img {
+      width: 100%;
+      display: block;
+      border-radius: 22px;
+      border: 1px solid rgba(0,242,255,.3);
+      filter: brightness(.85);
+    }
+
+    /* PROJECTS */
+
     .project-grid-3d {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 22px;
     }
 
     .project-card-3d {
-      background: rgba(12, 18, 28, 0.5);
-      backdrop-filter: blur(8px);
-      border-radius: 28px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.4s var(--ease-out);
-      transform-style: preserve-3d;
+      border-radius: 22px;
+      background: rgba(12,18,28,.75);
+      border: 1px solid rgba(255,255,255,.07);
+      transition: .3s;
     }
 
     .project-card-3d:hover {
-      transform: translateY(-12px) rotateX(2deg);
-      box-shadow: 0 30px 40px -20px rgba(0, 242, 255, 0.3);
-      border-color: rgba(0, 242, 255, 0.4);
+      transform: translateY(-8px);
+      border-color: rgba(0,242,255,.4);
+      box-shadow: 0 20px 35px rgba(0,242,255,.1);
     }
 
     .project-img {
       width: 100%;
-      height: 190px;
+      height: 185px;
       object-fit: cover;
-      transition: transform 0.5s;
-    }
-
-    .project-card-3d:hover .project-img {
-      transform: scale(1.03);
     }
 
     .project-content {
-      padding: 1.2rem;
+      padding: 20px;
     }
 
-    /* Testimonial 3D */
+    .project-content h3 {
+      margin-bottom: 12px;
+      color: var(--accent-cyan);
+    }
+
+    .project-content p {
+      color: var(--muted-light);
+      font-size: .9rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .project-content a {
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* WHAT I BUILD */
+
     .testi-3d {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 20px;
     }
 
     .testi-item {
-      background: rgba(20, 28, 40, 0.45);
-      border-radius: 28px;
-      padding: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: 0.25s;
+      padding: 25px;
+      border-radius: 22px;
+      background: rgba(20,28,40,.65);
+      border: 1px solid rgba(255,255,255,.07);
+      transition: .3s;
     }
 
     .testi-item:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       border-color: var(--accent-purple);
-      box-shadow: 0 20px 28px -18px var(--glow-purple);
     }
 
-    /* contact form 3d */
+    .testi-item h3 {
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+
+    .testi-item p {
+      color: var(--muted-light);
+      line-height: 1.7;
+    }
+
+    /* CONTACT */
+
     .contact-3d-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 25px;
     }
 
-    @media (max-width: 780px) {
-      .contact-3d-grid {
-        grid-template-columns: 1fr;
-      }
+    .contact-card,
+    .form-3d {
+      padding: 25px;
+      border-radius: 22px;
+      background: rgba(0,0,0,.3);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .contact-card h3,
+    .form-3d h3 {
+      margin-bottom: 18px;
+    }
+
+    .contact-card p {
+      margin: 15px 0;
+      color: var(--muted-light);
+      overflow-wrap: anywhere;
+    }
+
+    .contact-card a {
+      color: var(--accent-cyan);
     }
 
     .form-3d input,
     .form-3d textarea {
+      display: block;
       width: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(0, 242, 255, 0.3);
-      border-radius: 20px;
-      padding: 12px 18px;
+      margin: 13px 0;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,242,255,.3);
+      background: rgba(0,0,0,.4);
       color: white;
-      font-family: inherit;
-      transition: 0.2s;
+      font: inherit;
+    }
+
+    .form-3d textarea {
+      resize: vertical;
     }
 
     .form-3d input:focus,
     .form-3d textarea:focus {
       outline: none;
       border-color: var(--accent-cyan);
-      box-shadow: 0 0 12px rgba(0, 242, 255, 0.3);
-      background: rgba(0, 0, 0, 0.6);
     }
 
-    .progress-bar-3d {
-      height: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 8px 0 16px;
+    footer {
+      text-align: center;
+      padding: 25px 0;
+      margin-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: var(--muted-light);
     }
 
-    .progress-fill {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-      border-radius: 20px;
-      transition: width 1.2s var(--ease-out);
-    }
+    /* REVEAL */
 
-    /* scroll reveal animation */
     .reveal-on-scroll {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+      transform: translateY(25px);
+      transition: opacity .7s ease,transform .7s ease;
     }
 
     .reveal-on-scroll.revealed {
@@ -405,438 +578,521 @@
       transform: translateY(0);
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem 0 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      margin-top: 2rem;
-      color: var(--muted-light);
+    /* RESPONSIVE */
+
+    @media(max-width:900px) {
+      .hero-3d {
+        grid-template-columns: 1fr 280px;
+        gap: 25px;
+        padding: 30px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:700px) {
+      .wrapper {
+        padding: 12px 12px 30px;
+      }
+
+      .glass-header {
+        border-radius: 22px;
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 2px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+        padding: 8px;
+      }
+
+      .hero-3d {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 25px 18px;
+      }
+
+      .hero-contact,
+      .cta-group {
+        justify-content: center;
+      }
+
+      .section-block {
+        padding: 22px 17px;
+        border-radius: 22px;
+      }
+
+      .about-grid,
+      .skills-layout,
+      .contact-3d-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-images img {
+        height: 160px;
+      }
+
+      .skills-image img {
+        margin-top: 10px;
+      }
+
+      .progress-label {
+        font-size: 12px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <canvas id="webgl-canvas"></canvas
+<canvas id="webgl-canvas"></canvas>
 
-  <div class="wrapper">
-    <header class="glass-header">
-      <div class="brand-3d">
-        <div class="logo-3d">A</div>
-        <div class="brand-text">
-  <h3>Ayan Ali</h3>
-  <p style="font-size: 11px; color: #00f2ff; margin-top: 3px;">
-    Web Developer
-  </p>
-</div>
-          <div style="font-size: 12px; letter-spacing: 1px;">Full-Stack · 3D Vision</div>
-        </div>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header class="glass-header">
+
+    <div class="brand-3d">
+      <div class="logo-3d">A</div>
+      <div class="brand-text">
+        <h3>Ayan Ali</h3>
+        <p>Web Developer</p>
       </div>
-      <nav class="nav-links">
-        <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Work</a><a href="#testimonials">Kind words</a><a href="#contact">Connect</a>
-      </nav>
-    </header>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-3d reveal-on-scroll">
-      <div>
-        <span style="background: rgba(0,242,255,0.15); padding: 5px 12px; border-radius: 40px; font-size: 13px; font-weight: 600;">✦ AVAILABLE FOR WORLDWIDE REMOTE</span>
-       <div class="glow-text">Ayan Ali<br>Web Developer</div>
-       
-<p style="color: #b2c9d6; max-width: 500px; margin: 1rem 0 0.5rem;">
-  I'm Ayan Ali, an aspiring web developer passionate about building modern, responsive, and user-friendly websites using HTML, CSS, JavaScript, PHP, and MySQL.
-</p>
-       <div class="cta-group">
-          <button class="btn-3d" onclick="scrollToProjects()">✨ Explore Work</button>
-          <button class="btn-3d btn-3d-outline" onclick="scrollToContact()">📩 Contact Me</button>
-        </div>
-        <div style="margin-top: 24px; display: flex; gap: 20px;">
-          <div>📧 <a href="mailto:Smartbabaali@gmail.com" style="color: var(--accent-cyan);">Smartbabaali@gmail.com</a></div>
-          <div>📞 <a href="tel:03211718781" style="color: #b2c9d6;">+92 321 1718781</a></div>
-        </div>
-      </div>
-      <div>
-        <div class="tilt-card">
-          <div class="avatar-3d">
-            <img src="WhatsApp Image 2026-03-04 at 12.29.49 PM.jpeg" alt="Ayan Ali" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
-          <div style="text-align: center; margin-top: 18px;">
-            <h3 style="font-size: 1.5rem;">Ayan Ali</h3>
-        
-            <div style="display: flex; gap: 8px; justify-content: center; margin: 12px 0;">
-              <span style="background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 40px;">React</span>
-              <span style="background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 40px;">Node</span>
-              <span style="background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 40px;">PHP</span>
-            </div>
-            <button class="btn-3d" style="padding: 6px 18px; font-size: 0.9rem;" onclick="downloadCV()">📄 Download CV</button>
-          </div>
-        </div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Work</a>
+      <a href="#testimonials">What I Build</a>
+      <a href="#contact">Connect</a>
+    </nav>
 
-        
-<!-- About Section -->
-<section id="about" class="section-block reveal-on-scroll">
+  </header>
 
-  <h2 class="section-title">✦ About Me</h2>
-
-  <div style="
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    align-items: center;
-  ">
+  <!-- HERO -->
+  <section id="home" class="hero-3d reveal-on-scroll">
 
     <div>
-      <h3 style="color: var(--accent-cyan); margin-bottom: 14px;">
-        Who I Am
-      </h3>
+      <span class="availability">✦ AVAILABLE FOR WORLDWIDE REMOTE</span>
 
-      <p style="color: #cbdbe6; line-height: 1.8;">
-        I'm <strong style="color: var(--accent-cyan);">Ayan Ali</strong>,
-        an aspiring web developer focused on building modern,
-        responsive, and user-friendly websites.
-        I work with HTML, CSS, JavaScript, PHP, and MySQL.
-        My goal is to create clean, accessible, and engaging web experiences.
+      <h1 class="glow-text">Ayan Ali<br>Web Developer</h1>
+
+      <p class="hero-description">
+        I'm Ayan Ali, an aspiring web developer passionate about building
+        modern, responsive, and user-friendly websites using HTML, CSS,
+        JavaScript, PHP, and MySQL.
       </p>
+
+      <div class="cta-group">
+        <button class="btn-3d" onclick="scrollToProjects()">✨ Explore Work</button>
+        <button class="btn-3d btn-3d-outline" onclick="scrollToContact()">📩 Contact Me</button>
+      </div>
+
+      <div class="hero-contact">
+        <a href="mailto:Smartbabaali@gmail.com">📧 Smartbabaali@gmail.com</a>
+        <a href="tel:+923211718781">📞 +92 321 1718781</a>
+      </div>
     </div>
 
-    <div style="
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    ">
-      <img
-        src="erasebg-transformed.png"
-        alt="Coding workspace"
-        style="width: 100%; height: 180px; object-fit: contain; border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(0,242,255,0.2); padding: 8px;"
-      >
+    <div>
+      <div class="tilt-card">
 
-      <img
-        src="erasebg-transformed (1).png"
-        alt="Creative workspace"
-        style="width: 100%; height: 180px; object-fit: contain; border-radius: 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(0,242,255,0.2); padding: 8px;"
-      >
+        <div class="avatar-3d">
+          <img src="WhatsApp Image 2026-03-04 at 12.29.49 PM.jpeg" alt="Ayan Ali">
+        </div>
+
+        <h3 style="margin-top:18px;">Ayan Ali</h3>
+
+        <div class="profile-tags">
+          <span>JavaScript</span>
+          <span>PHP</span>
+          <span>MySQL</span>
+        </div>
+
+        <button class="btn-3d" onclick="downloadCV()">📄 Download CV</button>
+
+      </div>
     </div>
 
-  </div>
-</section>
+  </section>
 
+  <!-- ABOUT ME -->
+  <section id="about" class="section-block reveal-on-scroll">
 
+    <h2 class="section-title">✦ About Me</h2>
 
-  
+    <div class="about-grid">
 
+      <div class="about-text">
 
-    <!-- Skills with 3D progress bars -->
-    <section id="skills" class="section-block reveal-on-scroll">
-      <h2 class="section-title">✦ Core competencies</h2>
-      <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
-        <div style="flex: 1;">
-          <div class="skills-grid-3d">
+        <h3>Who I Am</h3>
 
-        <span class="skill-pill-3d">HTML5</span>
-        <span class="skill-pill-3d">CSS3</span>
-        <span class="skill-pill-3d">JavaScript</span>
-        <span class="skill-pill-3d">PHP</span>
-       <span class="skill-pill-3d">MySQL</span>
-       <span class="skill-pill-3d">Responsive Design</span>
-       <span class="skill-pill-3d">Git</span>
-       <span class="skill-pill-3d">GitHub</span>
-       <span class="skill-pill-3d">REST APIs</span>
-       <span class="skill-pill-3d">JSON</span>
-       <span class="skill-pill-3d">CRUD Operations</span>
+        <p>
+          I'm <strong style="color:var(--accent-cyan);">Ayan Ali</strong>,
+          an aspiring web developer focused on building modern,
+          responsive, and user-friendly websites. I work with HTML,
+          CSS, JavaScript, PHP, and MySQL. I'm continuously improving
+          my skills through hands-on projects and practical learning.
+          My goal is to create clean, accessible, and engaging web experiences.
+        </p>
+
+        <div class="education-card">
+          <h3>Education & Professional Training</h3>
+          <p>
+            <strong>ADSE — Software Engineering Training</strong><br>
+            Aptech Computer Education<br>
+            Training in web technologies, programming fundamentals,
+            databases, and practical software projects.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="about-images">
+
+        <img
+          src="erasebg-transformed.png"
+          alt="Coding workspace"
+          loading="lazy"
+        >
+
+        <img
+          src="erasebg-transformed (1).png"
+          alt="Creative workspace"
+          loading="lazy"
+        >
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section-block reveal-on-scroll">
+
+    <h2 class="section-title">✦ Core Competencies</h2>
+
+    <div class="skills-grid-3d">
+      <span class="skill-pill-3d">HTML5</span>
+      <span class="skill-pill-3d">CSS3</span>
+      <span class="skill-pill-3d">JavaScript</span>
+      <span class="skill-pill-3d">PHP</span>
+      <span class="skill-pill-3d">MySQL</span>
+      <span class="skill-pill-3d">Responsive Design</span>
+      <span class="skill-pill-3d">Git</span>
+      <span class="skill-pill-3d">GitHub</span>
+      <span class="skill-pill-3d">REST APIs</span>
+      <span class="skill-pill-3d">JSON</span>
+      <span class="skill-pill-3d">CRUD Operations</span>
       <span class="skill-pill-3d">MS Word</span>
-        <span class="skill-pill-3d">MS Excel</span>
-<span class="skill-pill-3d">MS PowerPoint</span>
+      <span class="skill-pill-3d">MS Excel</span>
+      <span class="skill-pill-3d">MS PowerPoint</span>
+    </div>
 
-         
-<div style="margin-top: 20px;">
+    <div class="skills-layout">
 
-  <div>
-    <span style="font-weight: 600;">HTML & CSS</span>
-    <span style="float: right;">Intermediate</span>
-  </div>
-  <div class="progress-bar-3d">
-    <div class="progress-fill" style="width: 70%;"></div>
-  </div>
+      <div>
 
-  <div>
-    <span style="font-weight: 600;">JavaScript</span>
-    <span style="float: right;">Learning</span>
-  </div>
-  <div class="progress-bar-3d">
-    <div class="progress-fill" style="width: 55%;"></div>
-  </div>
+        <div class="progress-row">
+          <div class="progress-label">
+            <strong>HTML & CSS</strong>
+            <span>Intermediate</span>
+          </div>
+          <div class="progress-bar-3d">
+            <div class="progress-fill" style="width:70%"></div>
+          </div>
+        </div>
 
-  <div>
-    <span style="font-weight: 600;">PHP & APIs</span>
-    <span style="float: right;">Developing</span>
-  </div>
-  <div class="progress-bar-3d">
-    <div class="progress-fill" style="width: 45%;"></div>
-  </div>
+        <div class="progress-row">
+          <div class="progress-label">
+            <strong>JavaScript</strong>
+            <span>Learning</span>
+          </div>
+          <div class="progress-bar-3d">
+            <div class="progress-fill" style="width:55%"></div>
+          </div>
+        </div>
 
-  <div>
-    <span style="font-weight: 600;">MySQL & CRUD</span>
-    <span style="float: right;">Developing</span>
-  </div>
-  <div class="progress-bar-3d">
-    <div class="progress-fill" style="width: 45%;"></div>
-  </div>
+        <div class="progress-row">
+          <div class="progress-label">
+            <strong>PHP & APIs</strong>
+            <span>Developing</span>
+          </div>
+          <div class="progress-bar-3d">
+            <div class="progress-fill" style="width:45%"></div>
+          </div>
+        </div>
+
+        <div class="progress-row">
+          <div class="progress-label">
+            <strong>MySQL & CRUD</strong>
+            <span>Developing</span>
+          </div>
+          <div class="progress-bar-3d">
+            <div class="progress-fill" style="width:45%"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="skills-image">
+        <img
+          src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60"
+          alt="Web development workspace"
+          loading="lazy"
+        >
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section-block reveal-on-scroll">
+
+    <h2 class="section-title">✦ Featured Creations</h2>
+
+    <div class="project-grid-3d">
+
+      <div class="project-card-3d">
+        <img class="project-img"
+          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"
+          alt="NovaMart e-commerce store">
+
+        <div class="project-content">
+          <h3>NovaMart — E-commerce Store</h3>
+          <p>
+            A modern online store featuring product search, category
+            filters, shopping cart, wishlist, and demo checkout.
+          </p>
+          <p>
+            <a href="https://ayanali-dev.github.io/ecommerce-website/" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+            |
+            <a href="https://github.com/AyanAli-Dev/ecommerce-website" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="project-card-3d">
+        <img class="project-img"
+          src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=60"
+          alt="Web development project">
+
+        <div class="project-content">
+          <h3>Web Development Project</h3>
+          <p>
+            A website created to practise HTML, CSS, JavaScript,
+            and responsive web design.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-card-3d">
+        <img class="project-img"
+          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+          alt="AI technology concept">
+
+        <div class="project-content">
+          <h3>GenAI Studio</h3>
+          <p>
+            An AI-focused frontend concept exploring modern interfaces
+            and interactive user experiences.
+          </p>
+        </div>
+      </div>
+
+      <div class="project-card-3d">
+        <img class="project-img"
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+          alt="Developer workspace">
+
+        <div class="project-content">
+          <h3>Developer Portfolio</h3>
+          <p>
+            A personal portfolio showcasing web development skills,
+            selected projects, and creative design.
+          </p>
+          <p>
+            <a href="https://ayanali-dev.github.io/Portfolio/" target="_blank" rel="noopener noreferrer">View Portfolio ↗</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- WHAT I BUILD -->
+  <section id="testimonials" class="section-block reveal-on-scroll">
+
+    <h2 class="section-title">✦ What I Build</h2>
+
+    <div class="testi-3d">
+
+      <div class="testi-item">
+        <h3>Responsive Websites</h3>
+        <p>
+          Modern websites designed to work smoothly across desktops,
+          tablets, and mobile devices.
+        </p>
+      </div>
+
+      <div class="testi-item">
+        <h3>Interactive Web Experiences</h3>
+        <p>
+          Engaging interfaces with JavaScript-powered interactions,
+          intuitive navigation, and polished visual details.
+        </p>
+      </div>
+
+      <div class="testi-item">
+        <h3>E-commerce Interfaces</h3>
+        <p>
+          Online store experiences featuring product listings,
+          search, category filters, shopping carts, and wishlists.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-block reveal-on-scroll">
+
+    <h2 class="section-title">✦ Let's Build Something Iconic</h2>
+
+    <div class="contact-3d-grid">
+
+      <div class="contact-card">
+        <h3>Direct Line</h3>
+
+        <p>📧 <a href="mailto:Smartbabaali@gmail.com">Smartbabaali@gmail.com</a></p>
+        <p>📞 <a href="tel:+923211718781">+92 321 1718781</a></p>
+        <p>📍 Karachi, Pakistan — UTC+5</p>
+
+        <button class="btn-3d" onclick="downloadCV()">📄 Download CV (PDF)</button>
+      </div>
+
+      <form class="form-3d" onsubmit="handleForm(event)">
+
+        <h3>Send a Creative Message</h3>
+
+        <input type="text" id="formName" placeholder="Full name" required>
+
+        <input type="email" id="formEmail" placeholder="Email address" required>
+
+        <textarea id="formMsg" rows="5" placeholder="Tell me about your vision..." required></textarea>
+
+        <button class="btn-3d" type="submit" style="width:100%;">
+          ✨ Send Inquiry
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <small>
+      © 2026 Ayan Ali | Web Developer |
+      <a href="https://github.com/AyanAli-Dev" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </small>
+  </footer>
 
 </div>
-```
-        </div>
-        <div style="flex: 1; background: radial-gradient(circle at 30% 20%, rgba(0,242,255,0.05), transparent); border-radius: 32px; padding: 1rem;">
-          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" style="width: 100%; border-radius: 32px; filter: brightness(0.85); border: 1px solid rgba(0,242,255,0.3);" alt="dev-setup">
-        </div>
-      </div>
-    </section>
 
-  
-<!-- Projects 3D cards -->
-<section id="projects" class="section-block reveal-on-scroll">
-  <h2 class="section-title">✦ Featured Creations</h2>
+<script>
+  // ANIMATED BACKGROUND
 
-  <div class="project-grid-3d">
+  const canvas = document.getElementById('webgl-canvas');
+  const ctx = canvas.getContext('2d');
 
-    <!-- NovaMart E-commerce -->
-    <div class="project-card-3d">
-      <img
-        class="project-img"
-        src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"
-        alt="NovaMart premium e-commerce store"
-        loading="lazy"
-      >
-      <div class="project-content">
-        <h3>NovaMart — E-commerce Store</h3>
-        <p>
-          A modern, responsive online store featuring product search,
-          category filters, shopping cart, wishlist, and a demo checkout.
-          Built with HTML, CSS, and JavaScript.
-        </p>
-        <p>
-          <a href="https://ayanali-dev.github.io/ecommerce-website/"
-             target="_blank" rel="noopener noreferrer">
-            Live Demo ↗
-          </a>
-          &nbsp;|&nbsp;
-          <a href="https://github.com/AyanAli-Dev/ecommerce-website"
-             target="_blank" rel="noopener noreferrer">
-            GitHub ↗
-          </a>
-        </p>
-      </div>
-    </div>
+  let ww = 0;
+  let wh = 0;
+  let particles = [];
 
-    <!-- Web Development -->
-    <div class="project-card-3d">
-      <img
-        class="project-img"
-        src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=60"
-        alt="Web development project"
-        loading="lazy"
-      >
-      <div class="project-content">
-        <h3>Web Development Project</h3>
-        <p>
-          A website created to practise HTML, CSS, JavaScript,
-          and responsive web design.
-        </p>
-      </div>
-    </div>
+  function resizeCanvas() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    <!-- Generative AI -->
-    <div class="project-card-3d">
-      <img
-        class="project-img"
-        src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
-        alt="AI technology concept"
-        loading="lazy"
-      >
-      <div class="project-content">
-        <h3>GenAI Studio</h3>
-        <p>
-          An AI-focused frontend concept exploring modern interfaces
-          and interactive user experiences.
-        </p>
-      </div>
-    </div>
+    ww = window.innerWidth;
+    wh = window.innerHeight;
 
-    <!-- Developer Portfolio -->
-    <div class="project-card-3d">
-      <img
-        class="project-img"
-        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
-        alt="Developer workspace"
-        loading="lazy"
-      >
-      <div class="project-content">
-        <h3>3D Developer Portfolio</h3>
-        <p>
-          A personal portfolio showcasing web development skills,
-          selected projects, and creative design.
-        </p>
-        <p>
-          <a href="https://ayanali-dev.github.io/Portfolio/"
-             target="_blank" rel="noopener noreferrer">
-            View Portfolio ↗
-          </a>
-        </p>
-      </div>
-    </div>
+    canvas.width = ww * dpr;
+    canvas.height = wh * dpr;
+    canvas.style.width = ww + 'px';
+    canvas.style.height = wh + 'px';
 
-  </div>
-</section>
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+    const count = Math.min(100, Math.floor((ww * wh) / 10000));
 
- 
-<!-- What I Build 3D -->
-<section id="testimonials" class="section-block reveal-on-scroll">
-  <h2 class="section-title">✦ What I Build</h2>
+    particles = [];
 
-  <div class="testi-3d">
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * ww,
+        y: Math.random() * wh,
+        radius: Math.random() * 1.8 + .5,
+        vx: (Math.random() - .5) * .35,
+        vy: (Math.random() - .5) * .25,
+        color: `hsl(${180 + Math.random() * 100},80%,65%)`
+      });
+    }
+  }
 
-    <div class="testi-item">
-      <h3 style="color: #00e0ff;">Responsive Websites</h3>
-      <p>
-        Modern websites designed to work smoothly across desktops,
-        tablets, and mobile devices.
-      </p>
-    </div>
+  function animateBg() {
+    ctx.clearRect(0, 0, ww, wh);
 
-    <div class="testi-item">
-      <h3 style="color: #00e0ff;">Interactive Web Experiences</h3>
-      <p>
-        Engaging interfaces with JavaScript-powered interactions,
-        intuitive navigation, and polished visual details.
-      </p>
-    </div>
+    for (const p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
 
-    <div class="testi-item">
-      <h3 style="color: #00e0ff;">E-commerce Interfaces</h3>
-      <p>
-        Online store experiences featuring product listings,
-        search, category filters, shopping carts, and wishlists.
-      </p>
-    </div>
+      if (p.x < 0) p.x = ww;
+      if (p.x > ww) p.x = 0;
+      if (p.y < 0) p.y = wh;
+      if (p.y > wh) p.y = 0;
 
-  </div>
-</section>
-
-
-    <!-- Contact form 3D -->
-    <section id="contact" class="section-block reveal-on-scroll">
-      <h2 class="section-title">✦ Let's build something iconic</h2>
-      <div class="contact-3d-grid">
-        <div style="background: rgba(0,0,0,0.3); border-radius: 32px; padding: 1.8rem;">
-          <h3>Direct line</h3>
-          <p style="margin: 12px 0;">📧 <a href="mailto:Smartbabaali@gmail.com" style="color: var(--accent-cyan);">Smartbabaali@gmail.com</a></p>
-          <p>📱 +92 321 1718781</p>
-          <p>📍 Karachi, Pakistan — UTC+5</p>
-          <div style="margin-top: 24px;"><button class="btn-3d" onclick="downloadCV()">📄 Download CV (PDF)</button></div>
-        </div>
-        <form class="form-3d" onsubmit="handleForm(event)" style="background: rgba(0,0,0,0.25); border-radius: 32px; padding: 1.8rem;">
-          <h3>Send a creative message</h3>
-          <input type="text" id="formName" placeholder="Full name" required style="margin: 12px 0;">
-          <input type="email" id="formEmail" placeholder="Email address" required style="margin: 12px 0;">
-          <textarea id="formMsg" rows="4" placeholder="Tell me about your vision..." required style="margin: 12px 0;"></textarea>
-          <button class="btn-3d" type="submit" style="width: 100%;">✨ Send Inquiry</button>
-        </form>
-      </div>
-    </section>
-
-    <footer>
-      
-<small>
-  © 2026 Ayan Ali | Web Developer |
-  <a href="https://github.com/AyanAli-Dev"
-     target="_blank"
-     rel="noopener noreferrer"
-     style="color: var(--accent-cyan);">
-    GitHub
-  </a>
-</small>
-
-    </footer>
-  </div>
-
-  <script>
-    // 3D Canvas: dynamic particle system with neon flow
-    const canvas = document.getElementById('webgl-canvas');
-    let ctx2d = canvas.getContext('2d');
-    let ww = window.innerWidth, wh = window.innerHeight;
-    let particles = [];
-
-    function resizeCanvas() {
-      ww = canvas.width = window.innerWidth;
-      wh = canvas.height = window.innerHeight;
-      initParticles3D();
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = '#00e0ff';
+      ctx.fill();
     }
 
-    function initParticles3D() {
-      const count = Math.min(140, Math.floor((ww * wh) / 8000));
-      particles = [];
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * ww,
-          y: Math.random() * wh,
-          radius: Math.random() * 2 + 0.6,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.25,
-          alpha: Math.random() * 0.4 + 0.2,
-          color: `hsl(${180 + Math.random() * 120}, 80%, 65%)`
-        });
-      }
-    }
+    ctx.shadowBlur = 0;
+    requestAnimationFrame(animateBg);
+  }
 
-    function animateBg() {
-      if (!ctx2d) return;
-      ctx2d.clearRect(0, 0, ww, wh);
-      ctx2d.fillStyle = '#010205';
-      ctx2d.fillRect(0, 0, ww, wh);
-      for (let p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < -20) p.x = ww + 20;
-        if (p.x > ww + 20) p.x = -20;
-        if (p.y < -20) p.y = wh + 20;
-        if (p.y > wh + 20) p.y = -20;
-        ctx2d.beginPath();
-        ctx2d.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx2d.fillStyle = p.color;
-        ctx2d.shadowBlur = 6;
-        ctx2d.shadowColor = '#00e0ff';
-        ctx2d.fill();
-      }
-      // connecting glowing lines
-      ctx2d.beginPath();
-      ctx2d.strokeStyle = 'rgba(0, 200, 255, 0.08)';
-      ctx2d.lineWidth = 0.8;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 110) {
-            ctx2d.beginPath();
-            ctx2d.moveTo(particles[i].x, particles[i].y);
-            ctx2d.lineTo(particles[j].x, particles[j].y);
-            ctx2d.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(animateBg);
-    }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  animateBg();
 
-    window.addEventListener('resize', () => {
-      ww = canvas.width = window.innerWidth;
-      wh = canvas.height = window.innerHeight;
-      initParticles3D();
-    });
-    resizeCanvas();
-    initParticles3D();
-    animateBg();
+  // SCROLL REVEAL
 
-    // Scroll reveal Intersection Observer
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+  if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -844,74 +1100,108 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.08 });
+
     revealElements.forEach(el => observer.observe(el));
-
-    // Helper functions
-    function scrollToProjects() {
-      document.getElementById('projects').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    function scrollToContact() {
-      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    }
-    function downloadCV() {
-      const link = document.createElement('a');
-      link.href = 'jCAEiP (1).pdf';
-      link.download = 'Ayan_Ali_Resume.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-   
-}
-
-function handleForm(e) {
-  e.preventDefault();
-
-  const name = document.getElementById('formName').value.trim();
-  const email = document.getElementById('formEmail').value.trim();
-  const msg = document.getElementById('formMsg').value.trim();
-
-  if (!name || !email || !msg) {
-    alert('Please fill in all fields.');
-    return;
+  } else {
+    revealElements.forEach(el => el.classList.add('revealed'));
   }
 
-  const subject = `Portfolio Inquiry from ${name}`;
-  const body =
-    `Name: ${name}\n` +
-    `Email: ${email}\n\n` +
-    `Message:\n${msg}`;
+  // NAVIGATION
 
-  const mailtoLink =
-    `mailto:Smartbabaali@gmail.com` +
-    `?subject=${encodeURIComponent(subject)}` +
-    `&body=${encodeURIComponent(body)}`;
-
-  window.location.href = mailtoLink;
-}
-
-    // Smooth nav links + 3D micro interactions
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const id = link.getAttribute('href').slice(1);
-        const section = document.getElementById(id);
-        if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+  function scrollToProjects() {
+    document.getElementById('projects').scrollIntoView({
+      behavior: 'smooth'
     });
-    // Additional micro: fill progress animation on view
-    const fillBars = document.querySelectorAll('.progress-fill');
+  }
+
+  function scrollToContact() {
+    document.getElementById('contact').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  // CV DOWNLOAD
+
+  function downloadCV() {
+    const link = document.createElement('a');
+    link.href = 'jCAEiP (1).pdf';
+    link.download = 'Ayan_Ali_Resume.pdf';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  // CONTACT FORM
+
+  function handleForm(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('formName').value.trim();
+    const email = document.getElementById('formEmail').value.trim();
+    const msg = document.getElementById('formMsg').value.trim();
+
+    if (!name || !email || !msg) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    const subject = `Portfolio Inquiry from ${name}`;
+
+    const body =
+      `Name: ${name}\n` +
+      `Email: ${email}\n\n` +
+      `Message:\n${msg}`;
+
+    const mailtoLink =
+      `mailto:Smartbabaali@gmail.com` +
+      `?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+  }
+
+  // SKILL BAR ANIMATION
+
+  const progressBars = document.querySelectorAll('.progress-fill');
+
+  if ('IntersectionObserver' in window) {
     const barObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const el = entry.target;
-          const width = el.style.width;
-          el.style.width = width; // already set in style
-          barObserver.unobserve(el);
+          entry.target.style.width = entry.target.getAttribute('style').match(/width:\s*([^;]+)/)[1];
+          barObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.5 });
-    fillBars.forEach(bar => barObserver.observe(bar));
-  </script>
+    });
+
+    progressBars.forEach(bar => {
+      const originalWidth = bar.style.width;
+      bar.style.width = '0';
+      bar.dataset.width = originalWidth;
+
+      barObserver.observe(bar);
+    });
+
+    // Restore saved widths when visible
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          bar.style.width = bar.dataset.width;
+          skillObserver.unobserve(bar);
+        }
+      });
+    });
+
+    progressBars.forEach(bar => skillObserver.observe(bar));
+  } else {
+    progressBars.forEach(bar => {
+      bar.style.width = bar.getAttribute('style').match(/width:\s*([^;]+)/)[1];
+    });
+  }
+</script>
+
 </body>
 </html>
